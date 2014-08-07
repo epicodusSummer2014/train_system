@@ -3,6 +3,7 @@ require 'train'
 require 'line'
 require 'rspec'
 
+
 DB = PG.connect({:dbname => 'station_test'})
 
 RSpec.configure do |config|

@@ -35,4 +35,21 @@ describe 'Line' do
       expect(new_line.==(new_line2)).to eq true
     end
   end
+
+    describe '.line_list' do
+    it 'returns all of the lines on a given station' do
+      new_station = Station.new({:name => "151st & Gleason"})
+      new_station2 = Station.new({:name => "Fischers Landing"})
+      new_station.save
+      new_station2.save
+      new_line = Line.new({:name => "Portland Express"})
+      new_line2 = Line.new({:name => "Vancouver Express"})
+      new_line.save
+      new_line2.save
+      new_station.update_train_lines(new_line.name)
+      new_station.update_train_lines(new_line2.name)
+      new_station2.update_train_lines(new_line.name)
+      expect(Line.line_list("151st & Gleason")).to eq [new_line, new_line2]
+    end
+  end
 end
